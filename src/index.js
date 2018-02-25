@@ -1,30 +1,51 @@
+
+var o;
+var count;
+
+function compareNumeric(a, b) {
+    if (a > b) return 1;
+    if (a < b) return -1;
+}
+
 class Sorter {
-  constructor() {
-    // your implementation
+    constructor() {
+        o = [];
+        count = 0;
   }
 
-  add(element) {
-    // your implementation
+    add(element) {
+        o[count] = element;
+        count++;
   }
 
-  at(index) {
-    // your implementation
+    at(index) {
+        return o[index];
   }
 
-  get length() {
-    // your implementation
-  }
+    get length() {
+        return o.length;
+    }
 
   toArray() {
-    // your implementation
+      return o;
   }
 
   sort(indices) {
-    // your implementation
+      var a = [];
+      var b = [];
+      a = indices;
+          a.sort(compareNumeric);
+          for (var i = 0; i < indices.length; i++) {
+              b[i] = o[a[i]];
+          }
+          b.sort(compareNumeric);
+          for (var i = 0; i < indices.length; i++) {
+              o[a[i]] = b[i];
+          }
   }
 
   setComparator(compareFunction) {
-    // your implementation
+      compareNumeric = compareFunction;
   }
 }
 
