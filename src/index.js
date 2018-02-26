@@ -1,8 +1,10 @@
-
 var o;
-var count;
 
 function compareNumeric(a, b) {
+    if (a > b) return 1;
+    if (a < b) return -1;
+}
+function cn(a, b) {
     if (a > b) return 1;
     if (a < b) return -1;
 }
@@ -10,12 +12,10 @@ function compareNumeric(a, b) {
 class Sorter {
     constructor() {
         o = [];
-        count = 0;
   }
 
     add(element) {
-        o[count] = element;
-        count++;
+        o.push(element);
   }
 
     at(index) {
@@ -31,17 +31,15 @@ class Sorter {
   }
 
   sort(indices) {
-      var a = [];
       var b = [];
-      a = indices;
-          a.sort(compareNumeric);
-          for (var i = 0; i < indices.length; i++) {
-              b[i] = o[a[i]];
-          }
-          b.sort(compareNumeric);
-          for (var i = 0; i < indices.length; i++) {
-              o[a[i]] = b[i];
-          }
+      indices.sort(cn);
+      for (var i = 0; i < indices.length; i++) {
+          b[i] = o[indices[i]];
+      }
+      b.sort(compareNumeric);
+      for (var i = 0; i < indices.length; i++) {
+          o[indices[i]] = b[i];
+      }
   }
 
   setComparator(compareFunction) {
